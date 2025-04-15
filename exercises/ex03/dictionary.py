@@ -9,10 +9,10 @@ def invert(d: dict[str, str]) -> dict[str, str]:
     for key in d:
         value = d[key]
         """ Raise error for duplicate keys"""
-        if value in result:
+        if value in inverted:
             raise KeyError("More than one of same key!")
-        result[value] = key
-    return result
+        inverted[value] = key
+    return inverted
 
 
 def count(items: list[str]) -> dict[str, int]:
@@ -25,19 +25,21 @@ def count(items: list[str]) -> dict[str, int]:
             counts[item] = 1
     return counts
 
-def favorite_color(colors: dict[str, str]) -> str
+
+def favorite_color(colors: dict[str, str]) -> str:
     """Dictionary that returns most frequent color"""
-    color_list: list(colors.values())
+    if not colors:
+        return ""
+    color_list = list(colors.values())
     """Implement count function"""
     counts_colors = count(color_list)
     max_count = 0
     favorite = ""
     for color in color_list:
-        if counts_colors >= max_count:
+        if counts_colors[color] >= max_count:
             max_count = counts_colors[color]
             favorite = color
     return favorite
-
 
 
 def bin_len(words: list[str]) -> dict[int, set[str]]:

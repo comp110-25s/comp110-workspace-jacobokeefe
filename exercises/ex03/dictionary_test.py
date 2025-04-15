@@ -56,6 +56,27 @@ def test_count_unique_items() -> None:
 # Tests for Favorite Color
 
 
+def test_favorite_color_empty() -> None:
+    """Edge case: test for empty string for empty dictionary"""
+    input_dict: dict[str, str] = {}
+    expected: str = ""
+    assert favorite_color(input_dict) == expected
+
+
+def test_favorite_color_duplicates() -> None:
+    """Use case: test if all colors are the same that it will be the favorite color"""
+    input_dict = {"Ron": "red", "Ben": "red", "Sam": "red"}
+    expected = "red"
+    assert favorite_color(input_dict) == expected
+
+
+def test_favorite_color_normal() -> None:
+    """Use case: test if it outputs correct favorite color from normal list"""
+    input_dict = {"Ron": "red", "Stacy": "red", "Jerry": "blue"}
+    expected = "red"
+    assert favorite_color(input_dict) == expected
+
+
 # Tests for bin_len
 
 
@@ -74,5 +95,5 @@ def test_bin_len_duplicated_items() -> None:
 def test_bin_len_unique_items() -> None:
     """Use case: tests to see if bin_len function works with normal list of words. Specifically, if it correctly associates word lengths with words."""
     input_list = ["shark", "snake", "crocodile"]
-    expected = {5: {"shark", "snake"}, 8: "crocodile"}
+    expected = {5: {"shark", "snake"}, 9: {"crocodile"}}
     assert bin_len(input_list) == expected
